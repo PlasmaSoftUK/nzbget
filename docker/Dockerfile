@@ -1,5 +1,5 @@
 # build stage
-FROM alpine:3.22.2 AS build
+FROM arm32v7/alpine:3.17 AS build
 
 # args
 ARG UNRAR6_VERSION=6.2.12
