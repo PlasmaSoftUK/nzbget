@@ -53,7 +53,8 @@ RUN \
   mkdir -p /app/nzbget && \
   mkdir -p /nzbget/build && \
   cd /nzbget/build && \
-  cmake .. -DCMAKE_INSTALL_PREFIX=/app/nzbget -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} && \
+  #Added -DDISABLE_CURSES=ON to ensure build works
+  cmake .. -DDISABLE_CURSES=ON -DCMAKE_INSTALL_PREFIX=/app/nzbget -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} && \
   cmake --build . -j ${MAKE_JOBS} && \
   cmake --install . && \
   cmake --build . --target install-conf && \
@@ -83,7 +84,7 @@ RUN \
   /app/nzbget/share/nzbget/nzbget.conf
 
 # runtime stage
-FROM alpine:3.22.2
+FROM arm32v7/alpine:3.17
 ARG NZBGET_RELEASE=develop
 
 # labels
@@ -98,7 +99,7 @@ COPY --from=build /usr/bin/7z /usr/bin/7z
 COPY --from=build /app/nzbget/ /app/nzbget/
 RUN \
   echo "**** install packages ****" && \
-  apk add --no-cache --update shadow su-exec libxml2 libxslt openssl python3 boost1.84-json boost1.84-filesystem tzdata && \
+  apk add --no-cache --update shadow su-exec libxml2 libxslt openssl python3 boost1.80-json boost1.80-filesystem tzdata && \
   ln -sf /usr/bin/python3 /usr/bin/python && \
   ln -s /usr/bin/7z /app/nzbget/7za && \
   ln -s /usr/bin/unrar /app/nzbget/unrar && \
