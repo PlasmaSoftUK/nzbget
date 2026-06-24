@@ -1,0 +1,21 @@
+
+
+For QNAP
+docker buildx create --use
+docker buildx inspect --bootstrap
+
+
+Build and store in docker
+docker buildx build \
+  --platform linux/arm/v7 \
+  -f docker/Dockerfile \
+  -t plasmasoftuk/nzbget:armv7 \
+  --load .
+  
+  
+  Then save and compress to transfer to nas
+  docker save plasmasoftuk/nzbget:armv7 -o nzbget-armv7.tar
+  
+  
+  Copy to Nas then import
+  docker load -i nzbget-armv7.tar

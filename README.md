@@ -18,6 +18,8 @@
 [![Discord](https://img.shields.io/badge/Discord-%235865F2.svg?&logo=discord&logoColor=white)](https://discord.gg/mV9Vn9sM7C)
 
 
+FORK INFO - Forked to make changes to Docker Build files for running NZBGet on arm7 / armhf like QNAP NAS TS-431XeU with an Annapurna ARM processor like the AL314. See QNAP Docker Build text file.
+
 NZBGet is a binary downloader, which downloads files from Usenet based-on information given in nzb files.
 
 NZBGet is written in C++ and is known for its performance and efficiency.
